@@ -1,0 +1,46 @@
+html {
+    position: relative;
+    min-height: 100%;
+    text-align: center; /* Выравнивание по центру */
+}
+
+* {
+@include box-sizing(border-box);
+}
+
+body {
+    /* Margin bottom by footer height */
+    margin-bottom: 60px;
+    background-image: url(../../resources/img/IronMan3.jpg);
+    font-family: "Lucida Grande", "Lucida Sans Unicode", Tahoma, Sans-Serif;
+    font-size: 14px;
+    line-height: 1.4;
+    padding: 20px;
+}
+
+.form-container {
+    background-color: #080808;
+    color: #ffffff;
+    width: 600px; /* Ширина элемента в пикселах */
+    padding: 10px; /* Поля вокруг текста */
+    margin: auto; /* Выравниваем по центру */
+}
+
+table {
+    margin: auto; /* Выравниваем таблицу по центру окна  */
+}
+
+h1, h2, h3 {
+    font-family: Sans-Serif;
+}
+
+body > .container {
+    padding: 60px 15px 0;
+}
+
+.container .text-muted {
+    margin: 20px 0;
+}
+
+
+

@@ -12,43 +12,43 @@
     <h:body>
 
         <h:form styleClass="container" id="form">
+            <h1 align="center" id="cin-title">Cinema</h1>
             <br/>
             <div class="form-container">
-                <h3>Кинотеатр</h3>
-                <p:outputLabel value="Продолжительность:"/>
-                <br/>
-                <p:outputLabel for="startDuration" value="от:"/>
+                <p:outputLabel value="Duration:"/>
+                <br/><br/>
+                <p:outputLabel for="startDuration" value="from "/>
                 <p:calendar id="startDuration" value="#{helloBean.startDuration}" pattern="HH:mm" timeOnly="true"/>
                 <br/>
                 <br/>
-                <p:outputLabel for="endDuration" value="до:"/>
+                <p:outputLabel for="endDuration" value="to "/>
                 <p:calendar id="endDuration" value="#{helloBean.endDuration}" pattern="HH:mm" timeOnly="true"/>
                 <br/>
                 <br/>
                 <br/>
 
-                <p:outputLabel value="Жанр:"/>
+                <p:outputLabel value="Genre "/>
                 <br/>
                 <p:selectManyCheckbox id="genre" value="#{helloBean.genre}">
-                    <f:selectItem itemLabel="Фантастика" itemValue="Fantastic"/>
-                    <f:selectItem itemLabel="Боевик" itemValue="Thriller"/>
-                    <f:selectItem itemLabel="Комедия" itemValue="Comedy"/>
-                    <f:selectItem itemLabel="Драма" itemValue="Drama"/>
+                    <f:selectItem itemLabel="Fantastic" itemValue="Fantastic"/>
+                    <f:selectItem itemLabel="Thriller" itemValue="Thriller"/>
+                    <f:selectItem itemLabel="Comedy" itemValue="Comedy"/>
+                    <f:selectItem itemLabel="Drama" itemValue="Drama"/>
                 </p:selectManyCheckbox>
                 <br/>
 
                 <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
-                    <p:outputLabel for="country" value="Страна:"/>
+                    <p:outputLabel for="country" value="Country "/>
                     <p:selectOneRadio id="country" value="#{helloBean.country}">
-                        <f:selectItem itemLabel="США" itemValue="USA"/>
-                        <f:selectItem itemLabel="Франция" itemValue="FRA"/>
-                        <f:selectItem itemLabel="Россия" itemValue="RUS"/>
+                        <f:selectItem itemLabel="USA" itemValue="USA"/>
+                        <f:selectItem itemLabel="France" itemValue="FRA"/>
+                        <f:selectItem itemLabel="Russia" itemValue="RUS"/>
                     </p:selectOneRadio>
                 </h:panelGrid>
                 <br/>
 
                 <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
-                    <p:outputLabel for="console" value="Год:"/>
+                    <p:outputLabel for="console" value="Year "/>
                     <p:selectOneMenu id="console" value="#{helloBean.year}" style="width:125px">
                         <f:selectItem itemLabel="2011" itemValue="2011"/>
                         <f:selectItem itemLabel="2012" itemValue="2012"/>
@@ -60,13 +60,13 @@
                 </h:panelGrid>
                 <br/>
 
-                <p:outputLabel value="Раннее время начала сеанса:"/>
+                <p:outputLabel value="Start time of the session"/>
                 <br/>
                 <p:calendar id="startTime" value="#{helloBean.startTime}" pattern="HH:mm" timeOnly="true"/>
                 <br/>
                 <br/>
 
-                <p:outputLabel value="Название:"/>
+                <p:outputLabel value="Name:"/>
                 <br/>
                 <h:inputText id="name" value="#{helloBean.name}"/>
                 <br/>
@@ -75,17 +75,18 @@
                 <p:remoteCommand name="rc" update="msgs" actionListener="#{helloBean.execute}"/>
 
                 <p:growl id="msgs" showDetail="true"/>
-                <p:commandButton type="button" onclick="rc()" value="Проверить есть ли такие фильмы"
+                <p:commandButton type="button" onclick="rc()" value="Check films by filter"
                                  icon="ui-icon-refresh"/>
                 <br/>
                 <br/>
 
-                <p:commandButton type="button" value="Найти фильм">
+                <p:commandButton type="button" value="Show films">
                     <f:ajax execute="name" render="outputFilm"/>
                 </p:commandButton>
                 <br/>
 
             </div>
+            <br/><br/><br/>
             <p:dataGrid id="outputFilm" var="film" value="#{helloBean.getFilms()}" columns="3" layout="grid"
                         rows="12" paginator="true"
                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
@@ -93,7 +94,7 @@
             >
 
                 <f:facet name="header">
-                    Подходящие фильмы
+                    Films
                 </f:facet>
 
                 <p:panel header="#{film.film.name}" style="text-align:center">
@@ -110,43 +111,27 @@
 
             </p:dataGrid>
 
-            <p:dialog header="Информация о фильме" widgetVar="filmDialog" modal="true" showEffect="fade"
+            <p:dialog header="Film details" widgetVar="filmDialog" modal="true" showEffect="fade"
                       hideEffect="fade" resizable="false">
                 <p:outputPanel id="filmDetail" style="text-align:center;">
                     <p:panelGrid columns="2" rendered="#{not empty helloBean.selectedFilm}" columnClasses="label,value">
 
-                        <h:outputText value="Название:"/>
+                        <h:outputText value="Name"/>
                         <h:outputText value="#{helloBean.selectedFilm.film.name}"/>
 
-                        <h:outputText value="Жанр:"/>
+                        <h:outputText value="Genre"/>
                         <h:outputText value="#{helloBean.selectedFilm.film.genre}"/>
 
-                        <h:outputText value="Страна"/>
+                        <h:outputText value="Country"/>
                         <h:outputText value="#{helloBean.selectedFilm.film.country}"/>
 
-                        <h:outputText value="Год:"/>
+                        <h:outputText value="Year"/>
                         <h:outputText value="#{helloBean.selectedFilm.film.year}"/>
 
                     </p:panelGrid>
                 </p:outputPanel>
             </p:dialog>
 
-            <!--<div class="row">
-                <ui:repeat id="outputFilm" value="#{helloBean.getFilms()}" var="film">
-                    <div class="col-sm-6 col-md-4">
-                        <div class="thumbnail">
-                            <div class="caption">
-                                <h3>#{film.film.name}</h3>
-                                <p>Длительность: ${film.film.duration}<br/>
-                                    Жанр: ${film.film.genre} <br/>
-                                    Страна: ${film.film.country} <br/>
-                                    Год: ${film.film.year} <br/>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </ui:repeat>
-            </div>-->
     	</h:form>
 
 	</h:body>

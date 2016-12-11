@@ -11,19 +11,27 @@ html {
 body {
     /* Margin bottom by footer height */
     margin-bottom: 60px;
-    background-image: url(../../resources/img/IronMan3.jpg);
+    background: url(../../resources/img/back.jpg);
     font-family: "Lucida Grande", "Lucida Sans Unicode", Tahoma, Sans-Serif;
     font-size: 14px;
     line-height: 1.4;
     padding: 20px;
 }
+#cin-title {
+    color: wheat;
+    font-size: 60px;
+    text-shadow: 1px 3px 3px black;
+}
 
 .form-container {
-    background-color: #080808;
     color: #ffffff;
-    width: 600px; /* Ширина элемента в пикселах */
-    padding: 10px; /* Поля вокруг текста */
-    margin: auto; /* Выравниваем по центру */
+    /* background: #7a330f; */
+    width: 600px;
+    opacity: 0.9;
+    padding: 10px;
+    margin: auto;
+    background-color: #7a330f;
+    box-shadow: 0 0 15px 10px #7a330f;
 }
 
 table {

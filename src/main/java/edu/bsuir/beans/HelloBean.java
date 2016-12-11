@@ -87,21 +87,21 @@ public class HelloBean implements Serializable {
 				List<Film> filmList = filmDAO.getResult(new FilterView(name, Time.valueOf(startDurationString),
 						Time.valueOf(endDurationString), genre, country, yearObj, Time.valueOf(startTimeString)));
 				if (filmList.isEmpty()) {
-					FacesMessage message = new FacesMessage("Подтверждение", "Нет");
+					FacesMessage message = new FacesMessage("Message", "No");
 					message.setSeverity(FacesMessage.SEVERITY_INFO);
 					FacesContext.getCurrentInstance().addMessage(null, message);
 				} else {
-					FacesMessage message = new FacesMessage("Подтверждение", "Да");
+					FacesMessage message = new FacesMessage("Message", "Yes");
 					message.setSeverity(FacesMessage.SEVERITY_INFO);
 					FacesContext.getCurrentInstance().addMessage(null, message);
 				}
 			} else {
-				FacesMessage message = new FacesMessage("Warning", "Не все поля заполнены");
+				FacesMessage message = new FacesMessage("Warning", "Please, fill required fields.");
 				message.setSeverity(FacesMessage.SEVERITY_WARN);
 				FacesContext.getCurrentInstance().addMessage(null, message);
 			}
 		} catch (Exception ex) {
-			FacesMessage message = new FacesMessage("Error", "Проблема с вводимыми полями");
+			FacesMessage message = new FacesMessage("Error", "Some input data is invalid.");
 			message.setSeverity(FacesMessage.SEVERITY_FATAL);
 			FacesContext.getCurrentInstance().addMessage(null, message);
 		}
